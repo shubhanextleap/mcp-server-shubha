@@ -12,9 +12,10 @@ The files `credentials.json` and `token.json` contain sensitive credentials and 
 - We will manage these by storing their contents as Base64-encoded Environment Variables in Railway (`CREDENTIALS_JSON_BASE64` and `TOKEN_JSON_BASE64`).
 - We will create a `start.sh` script that decodes these variables using `base64 -d` and writes them to the ephemeral filesystem before starting the server.
 
-## 3. Railway Configuration (Procfile)
-- Create a `Procfile` for Railway with the following content:
+## 3. Railway Configuration
+- **Procfile**: Create a `Procfile` for Railway with the following content to start the server:
   `web: bash start.sh`
+- **Python Version**: Railway defaults to the newest Python (3.13), which causes compiler errors with older dependencies. Create a `.python-version` file containing exactly `3.11` to force Railway to build the app using Python 3.11.
 
 ## 4. Git Configuration
 - Create a `.gitignore` to exclude secrets:
