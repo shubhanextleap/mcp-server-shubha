@@ -5,6 +5,10 @@ from gmail_tool import create_email_draft
 
 app = FastAPI(title="Google MCP Server")
 
+@app.get("/")
+def read_root():
+    return {"status": "ok", "message": "Google MCP Server is running. Visit /docs for API documentation."}
+
 class DocRequest(BaseModel):
     doc_id: str
     content: str
